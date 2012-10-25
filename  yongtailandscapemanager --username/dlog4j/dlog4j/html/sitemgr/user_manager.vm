@@ -45,5 +45,49 @@
 <div class="page_bottom"></div>
 </form>
 <script type="text/javascript">
-	$.
+	$.("#user_list").jqGrid({
+		datatype:"json",
+		url:"",
+		mtype:"post",
+		height:350,
+		width:1000,
+		colNames:["编号","姓名","角色","操作"],
+		colModels:[
+			{name:"id",index:"id",width:"60",sorttype:"int"},
+			{name:"username",index:"username",width:"90",sorttype:""},
+			{name:"rolename",index:"rolename",width:"100",sorttype:""},
+			{name:"operation",index:"operation",width:"80",sorttype:""}
+		],
+		jsonReader:{
+			root : "rows",
+			page : "page",
+			total : "total",
+			records : "records",
+			repeatitems : false
+		}
+		pager : "#pager", //分页工具栏  
+		imgpath : "themes/redmond/images", //图片路径  
+		rowNum : 10, //每页显示记录数  
+		viewrecords : true, //是否显示行数  
+		rowList : [ 10, 20, 30 ], //可调整每页显示的记录数  
+		multiselect : false, //是否支持多选  
+		sortname : "id",//根据哪个字段排序  
+		caption : "jqGrid表格测试", //表格标题
+		recordtext : "记录 {0} - {1} 总记录数 {2}",//显示记录数的格式
+		emptyrecords : "无数据",//空记录时的提示信息
+		loadtext : "获取数据中...",//获得数据时的提示信息
+		pgtext : "第几页 {0} 总页数 {1}"//页数显示格式
+	});
+	$.("#user_list").navGrid('#nav',{
+		refresh : true,
+		edit : true,
+		add : true,
+		del : true,
+		search : true,
+		refreshtitle : "刷新",
+		edittitle : "修改",
+		addtitle : "添加",
+		deltitle : "删除",
+		searchtitle : "搜索"
+	});
 </script>
