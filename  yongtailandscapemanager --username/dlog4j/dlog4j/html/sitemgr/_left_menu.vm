@@ -7,6 +7,7 @@
     	<li><a href="$dlog.root()/html/sitemgr/editsite.vm?sid=$g_site_id">网站基本信息</a></li>
     	<li><a href="$dlog.root()/html/sitemgr/funcs.vm?sid=$g_site_id">网站功能设置</a></li>
     	<li><a href="$dlog.root()/html/sitemgr/links.vm?sid=$g_site_id">友情链接管理</a></li>
+    	<li><a href="$dlog.root()/html/sitemgr/user_manager.vm?sid=$g_site_id">用户管理管理</a></li>
     </div>
     <div class="setting_footer"></div>
     

@@ -31,7 +31,7 @@
 <div class="page_top">
 	<div class="pagecontent">
 		<div class="pagecontent_left fleft">
-			<b>网站基本信息</b>
+			<b>用户维护</b>
 		</div>
 		<div class="pagecontent_right fright">
 			今天是: $date.get("MMMMM d, yyyy  EEEEE")
@@ -40,67 +40,10 @@
 	<div class="spacer_1"></div>
 </div>
 <div class="page_content">
-	<div class="form">
-		<div class="form_note">
-			<li><b>粗体字</b> 部分必须填写</li>
-			<li>如果网站标题没有填写则标题会别自动设置为网站的中文名</li>
-		</div>
-		<div class="spacer_1"></div>
-		<div class="form_row">
-    		<div class="form_row_title fleft">
-				<b>网站显示名</b>
-    		</div>
-    		<div class="form_row_content">
-				<input type="text" size="20" maxlength="20" name="friendlyName" value="$!{sform.friendlyName}">
-				#struts_message("friendlyName")
-			</div>
-    	</div>
-		<div class="spacer_1"></div>
-		<div class="form_row">
-    		<div class="form_row_title fleft">
-				网站标题
-    		</div>
-    		<div class="form_row_content">
-				<input type="text" size="40" maxlength="100" name="title" value="$!{sform.title}">
-				#struts_message("title")
-			</div>
-    	</div>
-		<div class="spacer_1"></div>
-		<div class="form_row">
-    		<div class="form_row_title fleft">
-				ICP证号
-    		</div>
-    		<div class="form_row_content">
-				<input type="text" size="20" maxlength="20" name="icpNumber" value="$!{sform.icpNumber}">(Just for Chinese)
-				#struts_message("icpNumber")
-			</div>
-    	</div>
-		<div class="spacer_1"></div>
-		<div class="form_row">
-    		<div class="form_row_title fleft">
-				网站宣言
-    		</div>
-    		<div class="form_row_content">
-				&nbsp;&nbsp;100字以内！
-			</div>
-    	</div>
-		<div class="spacer_1"></div>
-		<div class="form_row">
-    		<div class="form_row_content">
-				<div class="spacer_5"></div>
-				<textarea name="detail" rows="5" cols="68">$!{sform.detail}</textarea>
-				#struts_message("detail")
-			</div>
-    	</div>
-		<div class="spacer_1"></div>
-		<div class="form_row">
-			<div class="form_row_submit">
-				<input type="submit" name="eventSubmit_UpdateSite" value="提交更改" />
-				<input type="reset" value="重新填写" />
-			</div>
-    	</div>
-	</div>
-	<div class="spacer_10"></div>
+	<table id="user_list"></table>
 </div>
 <div class="page_bottom"></div>
 </form>
+<script type="text/javascript">
+	$.
+</script>

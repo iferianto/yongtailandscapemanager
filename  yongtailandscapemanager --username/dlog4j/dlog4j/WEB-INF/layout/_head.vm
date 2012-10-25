@@ -3,6 +3,11 @@
 <script type="text/javascript" src="$dlog.root()/js/common.js"></script>
 <script type="text/javascript" src="$dlog.root()/js/prototype.js"></script>
 <script type="text/javascript" src="$dlog.root()/fckeditor.js"></script>
+<script type="text/javascript" src="$dlog.root()/jquery-1.8.2.min.js"></script>
 <link rel="alternate" type="application/rss+xml" title="RSS" href="$link.getContextURL()/rss.vm?sid=$g_site_id" />
 <link href="$dlog.root()/styles/global.css" rel="stylesheet" type="text/css" />
-<link href="$dlog.root()/styles/1/main.css" rel="stylesheet" type="text/css" /> 
+<link href="$dlog.root()/styles/1/main.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" media="screen" href="$dlog.root()/css/ui.jqgrid.css" />
+<script src="$dlog.root()/js/jqgrid/grid.locale-cn.js" type="text/javascript"></script>
+<script src="$dlog.root()/js/jqgrid/jquery.jqGrid.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="$dlog.root()/js/jquery-ui-1.8.14.custom.min.js"></script>
