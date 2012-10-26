@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-module
   type="WEB"
-  name="dlog4j"
+  name="dlog4j_new"
   id="myeclipse.1349887160316"
   context-root="/dlog4j"
   j2ee-spec="5.0"
-  archive="dlog4j.war">
+  archive="dlog4j_new.war">
   <attributes>
     <attribute name="webrootdir" value="dlog4j" />
   </attributes>
