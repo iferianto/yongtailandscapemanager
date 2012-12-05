@@ -1,0 +1,11 @@
+[ {
+		"id":"j1",
+		"text":"Java"  ,
+         "attributes":{  
+             "url":"/demo/book/abc",  
+             "price":100  
+         }
+	},{
+		"id":"j2",
+		"text":"Cdddj#" 
+	}]

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="gsj"
+  id="myeclipse.1331102537843"
+  context-root="/gsj"
+  j2ee-spec="5.0"
+  archive="gsj.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+
