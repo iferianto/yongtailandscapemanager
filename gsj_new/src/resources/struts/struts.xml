@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.convention.default.parent.package"
+		value="crud-default" />
+	<constant name="struts.convention.package.locators" value="web" />
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.ui.theme" value="simple" /> 
+
+	<constant name="struts.multipart.maxSize" value="524288000" />
+	<!--500M max bytes-->
+	<!-- 用于CRUD Action的parent package -->
+	<package name="crud-default" extends="convention-default">
+
+		<!--
+			基于paramsPrepareParamsStack, 增加store interceptor保证actionMessage在redirect后不会丢失
+		-->
+		<interceptors>
+			<interceptor-stack name="crudStack">
+				<interceptor-ref name="store">
+					<param name="operationMode">AUTOMATIC</param>
+				</interceptor-ref>
+				<interceptor-ref name="paramsPrepareParamsStack" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="crudStack" />
+
+		<global-results>
+			<result name="glb_message_page">/common/message.jsp</result>
+			<result name="bbs_error">/WEB-INF/content/bbs/bbserror.jsp</result>
+			<result name="input">/common/message.jsp</result>
+		</global-results>
+	</package>
+</struts>

@@ -1,0 +1,13 @@
+#Thu Dec 13 21:10:45 CST 2012
+eclipse.preferences.version=1
+encoding//WebRoot/cms/header.jsp=UTF-8
+encoding//src/java/com/ecko/cms/web/IndexAction.java=UTF-8
+encoding//src/java/com/ecko/core/dao/HibernateDao.java=UTF-8
+encoding//src/java/com/ecko/system/dao/UserDao.java=UTF-8
+encoding//src/java/com/ecko/system/entity/User.java=UTF-8
+encoding//src/java/com/ecko/system/service/UserManager.java=UTF-8
+encoding//src/java/com/ecko/system/web/IndexAction.java=UTF-8
+encoding//src/java/com/ecko/system/web/LoginAction.java=UTF-8
+encoding//src/java/com/ecko/system/web/UserAction.java=UTF-8
+encoding//src/resources/common.properties=utf-8
+encoding/<project>=UTF-8
