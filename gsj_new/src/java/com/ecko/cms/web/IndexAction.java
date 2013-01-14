@@ -25,6 +25,7 @@ import com.ecko.system.util.UserSession;
 
 @Namespace("/")
 @Results( {
+		@Result(name = "logout", location = "/common/logout.jsp"),
 		@Result(name = "list", location = "/WEB-INF/content/idx/index.jsp"),
 		@Result(name = "login", location = "index!index.action", type = "redirect"),
 		@Result(name = "login_fail", location = "index!index.action?err=1", type = "redirect"),
@@ -80,7 +81,7 @@ public class IndexAction extends BaseAction {
 		request.setAttribute(GLB_MESSAGE, "您已成功退出!");
 		request.setAttribute(CommonConstants.GLB_RETURN_URL, request
 				.getContextPath());
-		return GLB_MESSAGE_PAGE;
+		return "logout";
 	}
 
 	public String index() {
