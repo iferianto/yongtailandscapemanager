@@ -95,7 +95,7 @@ public class UserAction extends BaseAction {
 		User u = this.userManager.get(user.getId());
 		String pwd = request.getParameter("pwd");
 		if (StringUtils.isNotBlank(user.getPassword())) {
-			user.setPassword(MD5.toMD5(pwd));
+			user.setPassword(MD5.toMD5(user.getPassword()));
 		} else {
 			user.setPassword(u.getPassword());
 
