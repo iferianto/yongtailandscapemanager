@@ -1,13 +1,15 @@
 package com.ecko.core.util;
 
 
+import it.sauronsoftware.base64.Base64;
+
 import java.security.MessageDigest;
 
 
 public class MD5 {
 
     public final static String toMD5(String s) {
-        char hexDigits[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+        /*char hexDigits[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
         try {
             byte[] strTemp = s.getBytes();
             MessageDigest mdTemp = MessageDigest.getInstance("MD5");
@@ -25,13 +27,16 @@ public class MD5 {
         }
         catch (Exception e) {
             return null;
-        }
+        }*/
+    	return new String(Base64.encode(s.getBytes()));
     }
 
     public static void main(String[] args) {
         // MD5_Test aa = new MD5_Test();
 
-        System.out.print(MD5.toMD5("1"));
-        System.out.print(MD5.toMD5("rainworm"));
+        System.out.println(MD5.toMD5("1"));
+        System.out.println(MD5.toMD5("rainworm"));
+        System.out.println(Base64.decode("MQ=="));
+        System.out.println(Base64.decode("cmFpbndvcm0="));
     }
 }
