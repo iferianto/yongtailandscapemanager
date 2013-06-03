@@ -1,0 +1,31 @@
+<Context reloadable="true">
+	<WatchedResource>WEB-INF/web.xml</WatchedResource>
+
+	<Resource name="admin" auth="Container" type="javax.sql.DataSource"
+		maxActive="100" maxIdle="30" maxWait="10000" username="openclinic"
+		password="1234567" driverClassName="com.mysql.jdbc.Driver"
+		url="jdbc:mysql://localhost:3306/ocadmin_dbo" />
+
+	<Resource name="longadmin" auth="Container"
+		type="javax.sql.DataSource" maxActive="100" maxIdle="30"
+		maxWait="10000" username="openclinic" password="1234567"
+		driverClassName="com.mysql.jdbc.Driver"
+		url="jdbc:mysql://localhost:3306/ocadmin_dbo" />
+
+	<Resource name="openclinic" auth="Container"
+		type="javax.sql.DataSource" maxActive="100" maxIdle="30"
+		maxWait="10000" username="openclinic" password="1234567"
+		driverClassName="com.mysql.jdbc.Driver"
+		url="jdbc:mysql://localhost:3306/openclinic_dbo" />
+
+	<Resource name="longopenclinic" auth="Container"
+		type="javax.sql.DataSource" maxActive="100" maxIdle="30"
+		maxWait="10000" username="openclinic" password="1234567"
+		driverClassName="com.mysql.jdbc.Driver"
+		url="jdbc:mysql://localhost:3306/openclinic_dbo" />
+
+	<Resource name="stats" auth="Container" type="javax.sql.DataSource"
+		maxActive="100" maxIdle="30" maxWait="10000" username="openclinic"
+		password="1234567" driverClassName="com.mysql.jdbc.Driver"
+		url="jdbc:mysql://localhost:3306/ocstats_dbo" />
+</Context>
