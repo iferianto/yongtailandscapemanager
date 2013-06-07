@@ -79,7 +79,7 @@
     		SAXReader xmlReader = new SAXReader();
 	        Document document;
 	        String sMenuXML = MedwanQuery.getInstance().getConfigString("examinationsXMLFile","examinations.xml");
-	        String sMenuXMLUrl = MedwanQuery.getInstance().getConfigString("templateSource") + sMenuXML;
+	        String sMenuXMLUrl = Constants.CLASSPATH + "/xml/" + sMenuXML;
 	        // Check if menu file exists, else use file at templateSource location.
 	        document = xmlReader.read(new URL(sMenuXMLUrl));
 	        if (document != null) {

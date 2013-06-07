@@ -1,4 +1,4 @@
-<%@ page import="org.dom4j.DocumentException" %>
+<%@ page import="org.dom4j.DocumentException;net.chelson" %>
 <%@page errorPage="/includes/error.jsp"%>
 <%@include file="/includes/validateUser.jsp"%>
 <%
@@ -16,7 +16,7 @@
                     String sSelected = activeUser.getParameter("DefaultPage");
 
                     SAXReader xmlReader = new SAXReader();
-                    String sDefaultPageXML = MedwanQuery.getInstance().getConfigString("templateSource") + "defaultPages.xml";
+                    String sDefaultPageXML = net + "/xml/defaultPages.xml";
                     Document document;
 
                     String sType;

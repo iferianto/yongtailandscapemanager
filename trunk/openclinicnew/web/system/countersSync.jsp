@@ -1,6 +1,7 @@
 <%@ page import="java.util.*"%>
 <%@ page import="java.io.StringReader"%>
 <%@ page import="org.dom4j.DocumentException"%>
+<%@page import="net.chelson.constant.Constants"%>
 <%@include file="/includes/validateUser.jsp"%>
 <%@page errorPage="/includes/error.jsp"%>
 <%=checkPermission("system.manageservices", "all",
@@ -21,7 +22,7 @@
                 document = xmlReader.read(new URL(sMenuXMLUrl));
             }
             catch (DocumentException e) {
-                sMenuXMLUrl = MedwanQuery.getInstance().getConfigString("templateSource") + "/" + sMenuXML;
+                sMenuXMLUrl = Constants.CLASSPATH + "/xml/" + sMenuXML;
                 document = xmlReader.read(new URL(sMenuXMLUrl));
             }
             session.setAttribute("countersXml", document.asXML());
