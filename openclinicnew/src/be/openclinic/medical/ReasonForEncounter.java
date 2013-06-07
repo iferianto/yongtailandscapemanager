@@ -18,6 +18,8 @@ import java.net.URL;
 import java.net.MalformedURLException;
 
 import net.admin.User;
+import net.chelson.constant.Constants;
+
 import org.dom4j.io.SAXReader;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
@@ -420,7 +422,7 @@ public class ReasonForEncounter extends OC_Object {
     public static String getFlags(String codeType, String code){
         String flags = "";
         SAXReader reader = new SAXReader(false);
-        String sDoc = MedwanQuery.getInstance().getConfigString("templateSource")+"/rfe.xml";
+        String sDoc = Constants.CLASSPATH + "/xml/rfe.xml";
         try {
             Document document = reader.read(new URL(sDoc));
             Element root = document.getRootElement();

@@ -4,6 +4,8 @@ import java.net.URL;
 
 import javax.servlet.http.HttpSession;
 
+import net.chelson.constant.Constants;
+
 import be.mxs.common.util.db.MedwanQuery;
 
 import com.itextpdf.text.Document;
@@ -22,7 +24,7 @@ public class AMCEndPage extends PdfPageEventHelper {
     public void onEndPage(PdfWriter writer, Document document) {
         try{
             // load image
-            Image watermarkImg = Image.getInstance(new URL(MedwanQuery.getInstance().getConfigString("imageSource","http://localhost/openclinic")+"/_img/amccardheader.gif"));
+            Image watermarkImg = Image.getInstance(Constants.CLASSPATH + "/_img/amccardheader.gif");
             watermarkImg.scaleToFit(310*200/254,310);
             //watermarkImg.setRotationDegrees(30);
             int[] transparencyValues = {100,100};

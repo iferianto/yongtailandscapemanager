@@ -12,6 +12,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.net.URL;
 
+import net.chelson.constant.Constants;
+
 import org.dom4j.io.SAXReader;
 import org.dom4j.Document;
 import org.dom4j.Element;
@@ -120,7 +122,7 @@ public class ServicePeriodStats {
         Connection oc_conn=MedwanQuery.getInstance().getOpenclinicConnection();
         try {
             //We voeren verschillende basisberekeingen uit
-            //Aantal verschillende patiënten voor deze periode
+            //Aantal verschillende patiï¿½nten voor deze periode
             String sQuery="select count(distinct OC_ENCOUNTER_PATIENTUID) total from OC_ENCOUNTERS_VIEW" +
                     " where" +
                     " OC_ENCOUNTER_ENDDATE>=? and" +
@@ -217,7 +219,7 @@ public class ServicePeriodStats {
             ps.close();
             //Nu maken we een lijst van alle itemtypes en we initializeren een stat voor elk itemtype
             //We halen eerst alle gewenste itemtypes op uit een XML-bestand
-            String sFilename= MedwanQuery.getInstance().getConfigString("templateSource")+"/ServiceStats.xml";
+            String sFilename= Constants.CLASSPATH + "/xml/ServiceStats.xml";
             SAXReader reader = new SAXReader(false);
             Document document = reader.read(new URL(sFilename));
             Element root = document.getRootElement();

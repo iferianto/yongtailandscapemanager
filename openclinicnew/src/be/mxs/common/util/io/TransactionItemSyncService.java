@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.io.FileInputStream;
 import java.util.*;
 
+import net.chelson.constant.Constants;
+
 /**
  * User: stijn smets
  * Date: 29-dec-2006
@@ -53,7 +55,7 @@ public class TransactionItemSyncService {
     //--- CONSTRUCTOR -----------------------------------------------------------------------------
     private TransactionItemSyncService() throws Exception {
         // locate ini files
-        String templateDirectory = MedwanQuery.getInstance().getConfigString("templateDirectory");
+        String templateDirectory = Constants.CLASSPATH + "/xml";
         if(templateDirectory == null){
             throw new Exception("TransactionItemSyncService : ConfigString 'templateDirectory' is empty or does not exist");
         }

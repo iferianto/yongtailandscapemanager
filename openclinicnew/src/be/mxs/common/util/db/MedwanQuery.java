@@ -1,26 +1,41 @@
 package be.mxs.common.util.db;
-import be.dpms.medwan.common.model.vo.administration.PersonVO;
-import be.dpms.medwan.common.model.vo.authentication.UserVO;
-import be.dpms.medwan.common.model.vo.occupationalmedicine.*;
-import be.dpms.medwan.common.model.vo.recruitment.FullRecordVO;
-import be.dpms.medwan.common.model.vo.recruitment.RecordRowVO;
-import be.dpms.medwan.services.exceptions.InternalServiceException;
-import be.dpms.medwan.webapp.wo.common.system.SessionContainerWO;
-import be.mxs.common.model.vo.IdentifierFactory;
-import be.mxs.common.model.vo.healthrecord.*;
-import be.mxs.common.util.broker.BrokerScheduler;
-import be.mxs.common.util.io.MessageReader;
-import be.mxs.common.util.io.MessageReaderMedidoc;
-import be.mxs.common.util.system.Debug;
-import be.mxs.common.util.system.ScreenHelper;
-import be.openclinic.finance.Prestation;
+import java.io.File;
+import java.net.URL;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collection;
+import java.util.Date;
+import java.util.Enumeration;
+import java.util.GregorianCalendar;
+import java.util.HashSet;
+import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Random;
+import java.util.SortedMap;
+import java.util.TreeMap;
+import java.util.TreeSet;
+import java.util.Vector;
 
-import com.inzoom.oledb.Session;
-import com.jpos.POStest.DS6708;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.servlet.http.HttpSession;
+import javax.sql.DataSource;
 
 import net.admin.Label;
 import net.admin.Service;
 import net.admin.User;
+import net.chelson.constant.Constants;
 
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
@@ -28,26 +43,49 @@ import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.servlet.http.HttpSession;
-import javax.sql.DataSource;
-import java.io.File;
-import java.net.URL;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-import java.sql.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.*;
-import java.util.Date;
-
-import jpos.JposException;
-import be.openclinic.adt.Encounter;
-import be.openclinic.common.OC_Object;
+import be.dpms.medwan.common.model.vo.administration.PersonVO;
+import be.dpms.medwan.common.model.vo.authentication.UserVO;
+import be.dpms.medwan.common.model.vo.occupationalmedicine.EnterpriseVisitItemVO;
+import be.dpms.medwan.common.model.vo.occupationalmedicine.EnterpriseVisitVO;
+import be.dpms.medwan.common.model.vo.occupationalmedicine.ExaminationVO;
+import be.dpms.medwan.common.model.vo.occupationalmedicine.ExportActivityVO;
+import be.dpms.medwan.common.model.vo.occupationalmedicine.FunctionCategoryVO;
+import be.dpms.medwan.common.model.vo.occupationalmedicine.FunctionCategoryWithRiskCodesVO;
+import be.dpms.medwan.common.model.vo.occupationalmedicine.FunctionGroupVO;
+import be.dpms.medwan.common.model.vo.occupationalmedicine.LabAnalysisVO;
+import be.dpms.medwan.common.model.vo.occupationalmedicine.PlannedExamination;
+import be.dpms.medwan.common.model.vo.occupationalmedicine.RiskCodeVO;
+import be.dpms.medwan.common.model.vo.occupationalmedicine.RiskProfileContextVO;
+import be.dpms.medwan.common.model.vo.occupationalmedicine.RiskProfileExaminationVO;
+import be.dpms.medwan.common.model.vo.occupationalmedicine.RiskProfileLabAnalysisVO;
+import be.dpms.medwan.common.model.vo.occupationalmedicine.RiskProfileRiskCodeVO;
+import be.dpms.medwan.common.model.vo.occupationalmedicine.RiskProfileSystemInfoVO;
+import be.dpms.medwan.common.model.vo.occupationalmedicine.RiskProfileVO;
+import be.dpms.medwan.common.model.vo.occupationalmedicine.WorkplaceVO;
+import be.dpms.medwan.common.model.vo.occupationalmedicine.WorkplaceWithRiskCodesVO;
+import be.dpms.medwan.common.model.vo.recruitment.FullRecordVO;
+import be.dpms.medwan.common.model.vo.recruitment.RecordRowVO;
+import be.dpms.medwan.services.exceptions.InternalServiceException;
+import be.dpms.medwan.webapp.wo.common.system.SessionContainerWO;
+import be.mxs.common.model.vo.IdentifierFactory;
+import be.mxs.common.model.vo.healthrecord.HealthRecordVO;
+import be.mxs.common.model.vo.healthrecord.ICPCCode;
+import be.mxs.common.model.vo.healthrecord.IConstants;
+import be.mxs.common.model.vo.healthrecord.ItemContextVO;
+import be.mxs.common.model.vo.healthrecord.ItemVO;
+import be.mxs.common.model.vo.healthrecord.PersonalVaccinationsInfoVO;
+import be.mxs.common.model.vo.healthrecord.TransactionVO;
+import be.mxs.common.model.vo.healthrecord.VaccinationInfoVO;
+import be.mxs.common.util.broker.BrokerScheduler;
+import be.mxs.common.util.io.MessageReader;
+import be.mxs.common.util.io.MessageReaderMedidoc;
+import be.mxs.common.util.system.Debug;
+import be.mxs.common.util.system.ScreenHelper;
 import be.openclinic.datacenter.Monitor;
 import be.openclinic.datacenter.Scheduler;
+import be.openclinic.finance.Prestation;
+
+import com.jpos.POStest.DS6708;
 public class MedwanQuery {
 	private static DataSource dsOpenClinic=null;
 	private static DataSource dsLongOpenClinic=null;
@@ -515,7 +553,7 @@ public class MedwanQuery {
 
         // load config values from XML
         try {
-            String sDoc = getConfigString("templateSource") + "config.xml";
+            String sDoc = Constants.CLASSPATH + "/xml/config.xml";
             Document document = reader.read(new URL(sDoc));
             Element root = document.getRootElement();
             Iterator elements = root.elementIterator("parameter");
@@ -531,7 +569,7 @@ public class MedwanQuery {
 
         // load restricted diagnoses from XML
         try {
-            String sDoc = getConfigString("templateSource") + "restrictedDiagnosis.xml";
+            String sDoc = Constants.CLASSPATH + "/xml/restrictedDiagnosis.xml";
             Document document = reader.read(new URL(sDoc));
             Element root = document.getRootElement();
             Iterator elements = root.elementIterator("diagnosis");
@@ -545,7 +583,7 @@ public class MedwanQuery {
             if (Debug.enabled) Debug.println(e.getMessage());
         }
         try {
-            String sDoc = getConfigString("templateSource") + "activities.xml";
+            String sDoc = Constants.CLASSPATH + "/xml/activities.xml";
             Document document = reader.read(new URL(sDoc));
             Element root = document.getRootElement();
             Iterator elements = root.elementIterator("activity");
@@ -564,7 +602,7 @@ public class MedwanQuery {
 
         // load forwards from XML
         try {
-            String sDoc = getConfigString("templateSource") + "forwards.xml";
+            String sDoc = Constants.CLASSPATH + "/xml/forwards.xml";
             Document document = reader.read(new URL(sDoc));
             Element root = document.getRootElement();
             Iterator elements = root.elementIterator("mapping");
@@ -1975,7 +2013,7 @@ public class MedwanQuery {
         // load values from "config.xml"
         try {
             SAXReader reader = new SAXReader(false);
-            String sDoc = getConfigString("templateSource") + "config.xml";
+            String sDoc = Constants.CLASSPATH + "/xml/config.xml";
             Document document = reader.read(new URL(sDoc));
             Element root = document.getRootElement();
             Iterator elements = root.elementIterator("parameter");

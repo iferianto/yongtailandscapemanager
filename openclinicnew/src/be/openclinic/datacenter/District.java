@@ -3,6 +3,8 @@ package be.openclinic.datacenter;
 import java.net.URL;
 import java.util.Iterator;
 
+import net.chelson.constant.Constants;
+
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
@@ -38,7 +40,7 @@ public class District {
         District d = null;
 		SAXReader reader = new SAXReader(false);
         try {
-            String sDoc = MedwanQuery.getInstance().getConfigString("templateSource") + countryFile;
+            String sDoc =Constants.CLASSPATH + "/xml/" + countryFile;
             Document document = reader.read(new URL(sDoc));
             Element root = document.getRootElement();
             Iterator elements = root.elementIterator("district");

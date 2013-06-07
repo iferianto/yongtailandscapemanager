@@ -24,6 +24,8 @@ import java.util.Iterator;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
+import net.chelson.constant.Constants;
+
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
@@ -37,7 +39,7 @@ public class Imaging {
 		String cf = "";
 		SAXReader reader = new SAXReader(false);
         try {
-            String sDoc = MedwanQuery.getInstance().getConfigString("templateSource") + countryFile;
+            String sDoc = Constants.CLASSPATH + "/xml/" + countryFile;
             Document document = reader.read(new URL(sDoc));
             Element root = document.getRootElement();
            	cf=root.attributeValue("directory")+"/"+root.attributeValue("countrymap");
@@ -60,7 +62,7 @@ public class Imaging {
 		String cf = "";
 		SAXReader reader = new SAXReader(false);
         try {
-            String sDoc = MedwanQuery.getInstance().getConfigString("templateSource") + countryFile;
+            String sDoc = Constants.CLASSPATH + "/xml/" + countryFile;
             Document document = reader.read(new URL(sDoc));
             Element root = document.getRootElement();
            	cf=root.attributeValue("directory")+"/"+root.attributeValue("countrymap");

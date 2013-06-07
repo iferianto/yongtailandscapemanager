@@ -1,6 +1,8 @@
 package be.openclinic.statistics.chin;
 
 import be.mxs.common.util.db.MedwanQuery;
+import net.chelson.constant.Constants;
+
 import org.dom4j.io.SAXReader;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
@@ -29,7 +31,7 @@ public class CHINAnalyser {
 
     public CHINAnalyser() {
         try {
-            String sFilename= MedwanQuery.getInstance().getConfigString("templateSource")+"/CHIN.xml";
+            String sFilename=Constants.CLASSPATH + "/xml/CHIN.xml";
             SAXReader reader = new SAXReader(false);
             Document document = reader.read(new URL(sFilename));
             Element root = document.getRootElement();

@@ -10,6 +10,8 @@ import be.dpms.medwan.common.model.vo.system.ActiveContextVO;
 import java.util.*;
 import java.net.URL;
 
+import net.chelson.constant.Constants;
+
 import org.dom4j.io.SAXReader;
 import org.dom4j.Document;
 import org.dom4j.Element;
@@ -32,7 +34,7 @@ public abstract class TransactionFactory {
     }
 
     public static TransactionFactory createTransactionFactory(String className) throws TransactionFactoryException {
-        templateSource = MedwanQuery.getInstance().getConfigString("templateSource");
+        templateSource = Constants.CLASSPATH + "/xml";
 
         try {
             TransactionFactory transactionFactory = (TransactionFactory)_hashtable.get(className);
@@ -79,7 +81,7 @@ public abstract class TransactionFactory {
         }
 
         SAXReader reader = new SAXReader(false);
-        String sDoc = templateSource+xml;
+        String sDoc = Constants.CLASSPATH + "/xml/" + xml;
         Document document = reader.read(new URL(sDoc));
 
         if (transactionVO.getTransactionType().equals("be.mxs.common.model.vo.healthrecord.IConstants.TRANSACTION_TYPE_LAB_REQUEST")){
