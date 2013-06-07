@@ -17,7 +17,7 @@
                 <select name='FindContext' class='text'>
                     <%
                         // list possible contexts from XML-file
-                        String sDoc = MedwanQuery.getInstance().getConfigString("templateSource")+"contexts.xml";
+                        String sDoc = net.chelson.constant.Constants.CLASSPATH + "/xml/contexts.xml";
                         if(sDoc.length()>0){
                             SAXReader reader = new SAXReader(false);
                             Document document = reader.read(new URL(sDoc));

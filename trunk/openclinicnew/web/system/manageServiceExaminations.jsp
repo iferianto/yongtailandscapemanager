@@ -1,5 +1,6 @@
 <%@page import="be.mxs.common.util.io.messync.Examination"%>
 <%@page import="be.openclinic.system.ServiceExamination,java.util.*" %>
+<%@page import="net.chelson.constant.Constants"%>
 <%@include file="/includes/validateUser.jsp"%>
 <%@page errorPage="/includes/error.jsp"%>
 <%=checkPermission("system.manageserviceexaminations","all",activeUser)%>

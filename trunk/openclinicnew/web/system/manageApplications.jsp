@@ -120,7 +120,7 @@
                     String title;
                     Hashtable perms;
                     SAXReader xmlReader = new SAXReader();
-                    String sPermissions = Constants.CLASSPATH + "/xml/permissions.xml";
+                    String sPermissions = net.chelson.constant.Constants.CLASSPATH + "/xml/permissions.xml";
                     Document document;
                     String sApplicationType, sApplicationId, sApplicationDisplaySection, sPermissionType, sPermissionId, sPermission;
                     boolean bDisplaySection;

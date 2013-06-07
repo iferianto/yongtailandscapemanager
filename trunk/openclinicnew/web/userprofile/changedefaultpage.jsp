@@ -16,7 +16,7 @@
                     String sSelected = activeUser.getParameter("DefaultPage");
 
                     SAXReader xmlReader = new SAXReader();
-                    String sDefaultPageXML = net + "/xml/defaultPages.xml";
+                    String sDefaultPageXML = net.chelson.constant.Constants.CLASSPATH + "/xml/defaultPages.xml";
                     Document document;
 
                     String sType;
