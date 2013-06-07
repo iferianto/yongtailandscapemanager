@@ -37,7 +37,7 @@
 			MedwanQuery.getInstance().reloadLabels();
 			MedwanQuery.getInstance().setConfigString("configureCountry", "");
 		}
-    	String sDoc = MedwanQuery.getInstance().getConfigString("templateSource") + "application.xml";
+    	String sDoc = Constants.CLASSPATH + "/xml/application.xml";
         SAXReader reader = new SAXReader(false);
         Document document = reader.read(new URL(sDoc));
         Element element = document.getRootElement().element("version");

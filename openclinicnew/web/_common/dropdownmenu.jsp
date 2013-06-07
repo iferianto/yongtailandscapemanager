@@ -2,11 +2,15 @@
                 org.dom4j.DocumentException,
                 java.util.Vector" %>
 <%@page errorPage="/includes/error.jsp" %>
+<%@page import="java.io.File"%>
+<%@page import="org.apache.log4j.Logger"%>
+<%@page import="net.chelson.constant.Constants"%>
 <%@include file="/_common/templateAddIns.jsp" %>
 <script type="text/javascript" src="<c:url value='/_common/_script/menu.js'/>"></script>
 
 <%!//### INNERCLASS MENU #########################################################################
 
+	private Logger logger = Logger.getLogger(this.getClass());
     public class Menu {
         public String labelid;
         public String accessrights;
@@ -15,6 +19,7 @@
         public String activeencounter;
         public Vector menus;
         public String target;
+        private Logger logger = Logger.getLogger(this.getClass());
         //--- CONSTRUCTOR -------------------------------------------------------------------------
         public Menu() {
             labelid = "";
@@ -183,23 +188,21 @@
                     <%//-- menus ------------------------------------------------------------------------------------
                         SAXReader xmlReader = new SAXReader();
                         String sMenu = checkString((String) session.getAttribute("MenuXML"));
-                        Document document;
+                        Document document = null;
                         if (sMenu.length() > 0) {
                             document = xmlReader.read(new StringReader(sMenu));
                         } else {
-                            String sMenuXML = MedwanQuery.getInstance().getConfigString("MenuXMLFile");
-                            if (sMenuXML.length() == 0) sMenuXML = "menu.xml";
-                            String sMenuXMLUrl = "http://" + request.getServerName() + request.getRequestURI().replaceAll(request.getServletPath(), "") + "/" + sAPPDIR + "/_common/xml/" + sMenuXML+"&ts="+getTs();
+                            //String sMenuXML = MedwanQuery.getInstance().getConfigString("MenuXMLFile");
+                            //if (sMenuXML.length() == 0) sMenuXML = "menu.xml";
+                            //String sMenuXMLUrl = "http://" + request.getServerName() + request.getRequestURI().replaceAll(request.getServletPath(), "") + "/" + sAPPDIR + "/_common/xml/" + sMenuXML+"&ts="+getTs();
 
                             // Check if menu file exists, else use file at templateSource location.
                             try {
-                                document = xmlReader.read(new URL(sMenuXMLUrl));
-                                if (Debug.enabled) Debug.println("Using custom menu file : " + sMenuXMLUrl);
+                                document = xmlReader.read(new File(Constants.CLASSPATH + "/xml/menu.xml"));
+                                logger.debug("use default menu xml");
                             }
                             catch (DocumentException e) {
-                                sMenuXMLUrl = MedwanQuery.getInstance().getConfigString("templateSource") + "/" + sMenuXML;
-                                document = xmlReader.read(new URL(sMenuXMLUrl));
-                                if (Debug.enabled) Debug.println("Using default menu file : " + sMenuXMLUrl);
+                            	logger.error("Â§ÑÁêÜËèúÂçïÈîôËØØ", e);
                             }
                             session.setAttribute("MenuXML", document.asXML());
                         }
@@ -330,7 +333,7 @@
         openPopup("/_common/readBarcode.jsp&ts=<%=getTs()%>");
     }
     function readBarcode2(barcode) {
-        var transform = "<%=MedwanQuery.getInstance().getConfigString("CCDKeyboardTransformString","‡&È\\\"'(ßË!Á")%>";
+        var transform = "<%=MedwanQuery.getInstance().getConfigString("CCDKeyboardTransformString","√†&√©\\\"'(¬ß√®!√ß")%>";
         var oldbarcode = barcode;
         barcode = "";
         for (var n = 0; n < oldbarcode.length; n++) {
@@ -369,7 +372,7 @@
         }
     }
     function readBarcode3(barcode) {
-        var transform = "<%=MedwanQuery.getInstance().getConfigString("CCDKeyboardTransformString","‡&È\\\"'(ßË!Á")%>";
+        var transform = "<%=MedwanQuery.getInstance().getConfigString("CCDKeyboardTransformString","√†&√©\\\"'(¬ß√®!√ß")%>";
         var oldbarcode = barcode;
         barcode = "";
         for (var n = 0; n < oldbarcode.length; n++) {

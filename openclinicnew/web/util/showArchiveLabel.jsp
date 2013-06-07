@@ -1,4 +1,5 @@
-<%@include file="/includes/validateUser.jsp"%>
+
+<%@page import="net.chelson.constant.Constants"%><%@include file="/includes/validateUser.jsp"%>
 
 <center>
 <table width="20%">
@@ -11,7 +12,7 @@
     // load config values from XML
     try {
         SAXReader reader = new SAXReader(false);
-        String sDoc = MedwanQuery.getInstance().getConfigString("templateSource") + "archive.xml";
+        String sDoc = Constants.CLASSPATH + "/xml/archive.xml";
         Document document = reader.read(new URL(sDoc));
         Element root = document.getRootElement();
         for(int n=activePatient.getID("archiveFileCode").length()-1;n>=0;n--){
