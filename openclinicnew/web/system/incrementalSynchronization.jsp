@@ -359,7 +359,7 @@
 
     if(Debug.enabled) Debug.println("reloading model");
     SAXReader reader = new SAXReader(false);
-    sDoc = Constants.CLASSPATH + "/xml/openwork.xml";
+    sDoc = net.chelson.constant.Constants.CLASSPATH + "/xml/openwork.xml";
     document = reader.read(new URL(sDoc));
 %>
 <form name="merge" method="post">

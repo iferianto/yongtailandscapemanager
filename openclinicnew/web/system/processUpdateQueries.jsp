@@ -9,7 +9,7 @@
     //--- PROCESS UPDATE QUERIES ------------------------------------------------------------------
     if (sAction.equals("processUpdateQueries")) {
         //*** process 'updatequeries.xml' containing queries that need to be executed at login ***
-        String sDoc = MedwanQuery.getInstance().getConfigString("templateSource") + "updatequeries.xml";
+        String sDoc = net.chelson.constant.Constants.CLASSPATH + "/xml/updatequeries.xml";
         if (Debug.enabled) Debug.println("login.jsp : processing update-queries file '" + sDoc + "'.");
 
       	Connection ad_conn = MedwanQuery.getInstance().getAdminConnection();
