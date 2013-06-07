@@ -1,5 +1,7 @@
 package be.mxs.common.util.cardio;
 
+import net.chelson.constant.Constants;
+
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.DocumentException;
@@ -36,7 +38,7 @@ public class CardiovascularRiskBelgium {
         //Eerst openen we het cardiovasculair risico-document
         try {
             SAXReader reader = new SAXReader(false);
-            String sDoc = MedwanQuery.getInstance().getConfigString("templateSource")+"cardiorisk_b.xml";
+            String sDoc = Constants.CLASSPATH + "/xml/cardiorisk_b.xml";
             Document document;
             document = reader.read(new URL(sDoc));
             Element root = document.getRootElement();

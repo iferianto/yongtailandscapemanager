@@ -7,6 +7,7 @@ import be.mxs.common.util.system.ScreenHelper;
 import be.mxs.common.util.system.Debug;
 import net.admin.Service;
 import net.admin.User;
+import net.chelson.constant.Constants;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -1004,7 +1005,7 @@ public class Diagnosis extends OC_Object{
     
 	public static String getFlags(String codeType, String code, String flags){
 	    SAXReader reader = new SAXReader(false);
-	    String sDoc = MedwanQuery.getInstance().getConfigString("templateSource")+"/diagnosis.xml";
+	    String sDoc = Constants.CLASSPATH + "/xml/diagnosis.xml";
 	    try {
 	        Document document = reader.read(new URL(sDoc));
 	        Element root = document.getRootElement();

@@ -14,6 +14,8 @@ import java.text.SimpleDateFormat;
 import java.io.*;
 import java.net.URL;
 
+import net.chelson.constant.Constants;
+
 import org.jfree.data.xy.XYSeriesCollection;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYDataset;
@@ -66,7 +68,7 @@ public abstract class PDFOfficialGrowthGraph extends PDFOfficialBasic {
                      s95 = new XYSeries("P95",true,false),
                      s97 = new XYSeries("P97",true,false);
 
-            String fullFilePath = MedwanQuery.getInstance().getConfigString("templateSource")+"/growthchartdata/"+sourceFileName;
+            String fullFilePath = Constants.CLASSPATH + "/xml/growthchartdata/"+sourceFileName;
             if(Debug.enabled) Debug.println("Growthgraph : reading file '"+fullFilePath+"' ..");
             BufferedReader in = new BufferedReader(new InputStreamReader(new URL(fullFilePath).openStream()));
             String data = in.readLine(); // ignore first line = header
@@ -286,42 +288,42 @@ public abstract class PDFOfficialGrowthGraph extends PDFOfficialBasic {
         sBioValues.append(getItemType(tran.getItems(),IConstants_PREFIX+"ITEM_TYPE_BIOMETRY_PARAMETER4"));
         sBioValues.append(getItemType(tran.getItems(),IConstants_PREFIX+"ITEM_TYPE_BIOMETRY_PARAMETER5"));
 
-        if (sBioValues.indexOf("£")>-1){
+        if (sBioValues.indexOf("ï¿½")>-1){
             StringBuffer sTmpBio = sBioValues;
             String sTmpDate, sTmpHeight, sTmpWeight, sTmpSkull;
 
             while (sTmpBio.toString().toLowerCase().indexOf("$")>-1) {
                 // date
                 sTmpDate = "";
-                if (sTmpBio.toString().toLowerCase().indexOf("£")>-1){
-                    sTmpDate = sTmpBio.substring(0,sTmpBio.toString().toLowerCase().indexOf("£"));
-                    sTmpBio = new StringBuffer(sTmpBio.substring(sTmpBio.toString().toLowerCase().indexOf("£")+1));
+                if (sTmpBio.toString().toLowerCase().indexOf("ï¿½")>-1){
+                    sTmpDate = sTmpBio.substring(0,sTmpBio.toString().toLowerCase().indexOf("ï¿½"));
+                    sTmpBio = new StringBuffer(sTmpBio.substring(sTmpBio.toString().toLowerCase().indexOf("ï¿½")+1));
                 }
 
                 // weight
                 sTmpWeight = "";
-                if (sTmpBio.toString().toLowerCase().indexOf("£")>-1){
-                    sTmpWeight = sTmpBio.substring(0,sTmpBio.toString().toLowerCase().indexOf("£")); 
-                    sTmpBio = new StringBuffer(sTmpBio.substring(sTmpBio.toString().toLowerCase().indexOf("£")+1));
+                if (sTmpBio.toString().toLowerCase().indexOf("ï¿½")>-1){
+                    sTmpWeight = sTmpBio.substring(0,sTmpBio.toString().toLowerCase().indexOf("ï¿½")); 
+                    sTmpBio = new StringBuffer(sTmpBio.substring(sTmpBio.toString().toLowerCase().indexOf("ï¿½")+1));
                 }
 
                 // height
                 sTmpHeight = "";
-                if (sTmpBio.toString().toLowerCase().indexOf("£")>-1){
-                    sTmpHeight = sTmpBio.substring(0,sTmpBio.toString().toLowerCase().indexOf("£"));
-                    sTmpBio = new StringBuffer(sTmpBio.substring(sTmpBio.toString().toLowerCase().indexOf("£")+1));
+                if (sTmpBio.toString().toLowerCase().indexOf("ï¿½")>-1){
+                    sTmpHeight = sTmpBio.substring(0,sTmpBio.toString().toLowerCase().indexOf("ï¿½"));
+                    sTmpBio = new StringBuffer(sTmpBio.substring(sTmpBio.toString().toLowerCase().indexOf("ï¿½")+1));
                 }
 
                 // skull
                 sTmpSkull = "";
-                if (sTmpBio.toString().toLowerCase().indexOf("£")>-1){
-                    sTmpSkull = sTmpBio.substring(0,sTmpBio.toString().toLowerCase().indexOf("£"));
-                    sTmpBio = new StringBuffer(sTmpBio.substring(sTmpBio.toString().toLowerCase().indexOf("£")+1));
+                if (sTmpBio.toString().toLowerCase().indexOf("ï¿½")>-1){
+                    sTmpSkull = sTmpBio.substring(0,sTmpBio.toString().toLowerCase().indexOf("ï¿½"));
+                    sTmpBio = new StringBuffer(sTmpBio.substring(sTmpBio.toString().toLowerCase().indexOf("ï¿½")+1));
                 }
 
                 // (skip) arm
-                if (sTmpBio.toString().toLowerCase().indexOf("£")>-1){
-                    sTmpBio = new StringBuffer(sTmpBio.substring(sTmpBio.toString().toLowerCase().indexOf("£")+1));
+                if (sTmpBio.toString().toLowerCase().indexOf("ï¿½")>-1){
+                    sTmpBio = new StringBuffer(sTmpBio.substring(sTmpBio.toString().toLowerCase().indexOf("ï¿½")+1));
                 }
 
                 // (skip) food

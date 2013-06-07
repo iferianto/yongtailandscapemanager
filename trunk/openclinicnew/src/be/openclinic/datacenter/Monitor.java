@@ -9,6 +9,8 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.Vector;
 
+import net.chelson.constant.Constants;
+
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.NameValuePair;
 import org.apache.commons.httpclient.methods.PostMethod;
@@ -87,7 +89,7 @@ public class Monitor implements Runnable{
             	vNvp.add(new NameValuePair("centerBeds",MedwanQuery.getInstance().getConfigString("globalHealthBarometerCenterBeds","")));
             	vNvp.add(new NameValuePair("date",new SimpleDateFormat("yyyyMMdd").format(new java.util.Date())));
             	vNvp.add(new NameValuePair("softwareVersion",MedwanQuery.getInstance().getConfigString("updateVersion","")));
-    			sDoc = MedwanQuery.getInstance().getConfigString("datacenterTemplateSource",MedwanQuery.getInstance().getConfigString("templateSource")) + "globalhealthbarometer.xml";
+    			sDoc = Constants.CLASSPATH + "/xml/globalhealthbarometer.xml";
 	            reader = new SAXReader(false);
 	            document = reader.read(new URL(sDoc));
 	            root = document.getRootElement();

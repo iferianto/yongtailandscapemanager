@@ -16,6 +16,8 @@ import java.sql.Timestamp;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import net.chelson.constant.Constants;
+
 import org.dom4j.io.SAXReader;
 import org.dom4j.Document;
 import org.dom4j.Element;
@@ -156,7 +158,7 @@ public class UpdateService {
         String sDoc = null;
 
         try{
-            sDoc = MedwanQuery.getInstance().getConfigString("templateSource")+"application.xml";
+            sDoc = Constants.CLASSPATH + "/xml/application.xml";
             Document document = xmlReader.read(new URL(sDoc));
             Element versionElem = document.getRootElement().element("version");
 

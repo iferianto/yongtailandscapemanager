@@ -1,5 +1,7 @@
 package org.hnrw.chin;
 
+import net.chelson.constant.Constants;
+
 import org.hnrw.chin.extractors.EncounterExtractor;
 import org.hnrw.chin.extractors.Extractor;
 import org.hnrw.chin.integrators.Integrator;
@@ -20,7 +22,7 @@ import java.util.Iterator;
  */
 public class ExtractMessages {
     public static void main(String[] args){
-        String sDoc = MedwanQuery.getInstance().getConfigString("templateSource") + "healthnet.xml";
+        String sDoc = Constants.CLASSPATH + "/xml/healthnet.xml";
         SAXReader reader = new SAXReader(false);
         try {
             Document hnConfig = reader.read(new URL(sDoc));

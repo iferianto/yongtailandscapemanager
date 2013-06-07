@@ -26,6 +26,7 @@ import javax.servlet.http.HttpSession;
 import net.admin.Label;
 import net.admin.Parameter;
 import net.admin.User;
+import net.chelson.constant.Constants;
 
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.NameValuePair;
@@ -44,7 +45,7 @@ public class UpdateSystem {
 		updateLabels(basedir);
 		updateTransactionItems(basedir);
 		updateExaminations();
-        String sDoc = MedwanQuery.getInstance().getConfigString("templateSource") + "application.xml";
+        String sDoc = Constants.CLASSPATH + "/xml/application.xml";
         SAXReader reader = new SAXReader(false);
         try{
 	        Document document = reader.read(new URL(sDoc));
@@ -889,7 +890,7 @@ public class UpdateSystem {
         		String oc_key=rs.getString("OC_KEY");
         		String oc_value=rs.getString("OC_VALUE");
         		String news="";
-        		if(oc_value.indexOf("£")<0){
+        		if(oc_value.indexOf("ï¿½")<0){
         			String[] s=oc_value.split(";");
         			for(int n=0;n<s.length;n++){
         				if(news.length()>0){
@@ -897,7 +898,7 @@ public class UpdateSystem {
         				}
         				for (int i=s[n].split("\\.").length-1;i>-1;i--){
         					if(i==s[n].split("\\.").length-3){
-        						news="£"+news;
+        						news="ï¿½"+news;
         					}
         					else if (i<s[n].split("\\.").length-1){
         						news="."+news;

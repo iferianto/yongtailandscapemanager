@@ -1,5 +1,7 @@
 package org.hnrw.chin.integrators;
 
+import net.chelson.constant.Constants;
+
 import org.dom4j.Element;
 import org.dom4j.Document;
 import org.dom4j.io.SAXReader;
@@ -26,7 +28,7 @@ public abstract class Integrator {
 
     static public boolean readMessage(String filename){
         boolean bSuccess=false;
-        String sDoc = MedwanQuery.getInstance().getConfigString("templateSource") + "healthnet.xml";
+        String sDoc = Constants.CLASSPATH + "/xml/healthnet.xml";
         SAXReader reader = new SAXReader(false);
         Connection oc_conn=MedwanQuery.getInstance().getOpenclinicConnection();
         try{

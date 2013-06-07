@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import net.chelson.constant.Constants;
+
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.Document;
@@ -15,7 +17,7 @@ import be.mxs.common.util.db.MedwanQuery;
 
 public class UpdateQueries {
 	public static void updateQueries(javax.servlet.ServletContext application){
-        String sDoc = MedwanQuery.getInstance().getConfigString("templateSource") + "updatequeries.xml";
+        String sDoc = Constants.CLASSPATH + "/xml/updatequeries.xml";
         if (Debug.enabled) Debug.println("login.jsp : processing update-queries file '" + sDoc + "'.");
         if (MedwanQuery.getInstance().getConfigInt("cacheDB") != 1) {
             // read xml file
